@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+$api = app(Router::class);
+
+$api->version('v1', [], function (Router $api) {
+    $api->get('conferences', 'App\Http\Controllers\Api\V1\ConferenceController@index');
 });
